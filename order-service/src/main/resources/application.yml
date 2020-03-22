@@ -1,0 +1,168 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: order-service
+  profiles: 8080
+  zipkin:
+    base-url: http://localhost:7700
+  sleuth:
+      sampler:
+        probability: 1.0
+  jackson:
+    default-property-inclusion: non_null
+    property-naming-strategy: com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://xiaoqiang:xiaoqiang@micoservice1:8761/eureka/, http://xiaoqiang:xiaoqiang@micoservice2:8762/eureka/, http://xiaoqiang:xiaoqiang@micoservice3:8763/eureka/
+# feign配置，默认情况下，hystrix是关闭的，需要手动打开
+feign:
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default: # 配置默认的Feign客户端超时时间
+        connectTimeout: 5000
+        readTimeout: 5000
+      inventory-service: # 给指定的客户端配置超时时间
+        connectTimeout: 5000
+        readTimeout: 5000
+  httpclient:
+    connection-timeout: 5000
+    max-connections: 200
+    max-connections-per-route: 50
+
+# 配置ribbon的超时时间和重试机制, 具体的key在CommonClientConfigKey.java文件中，一般与feign的配置保持一致
+ribbon:
+  ReadTimeout: 5000
+  SocketTimeout: 5000
+
+# hystrix超时时间配置
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 10000
+        timeout:
+            enabled: true
+
+---
+server:
+  port: 8081
+
+spring:
+  application:
+    name: order-service
+  profiles: 8081
+  zipkin:
+    base-url: http://localhost:7700
+  sleuth:
+    sampler:
+      probability: 1.0
+  jackson:
+    default-property-inclusion: non_null
+    property-naming-strategy: com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://xiaoqiang:xiaoqiang@micoservice1:8761/eureka/, http://xiaoqiang:xiaoqiang@micoservice2:8762/eureka/, http://xiaoqiang:xiaoqiang@micoservice3:8763/eureka/
+
+# feign配置，默认情况下，hystrix是关闭的，需要手动打开
+feign:
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default: # 配置默认的Feign客户端超时时间
+        connectTimeout: 5000
+        readTimeout: 5000
+      inventory-service: # 给指定的客户端配置超时时间
+        connectTimeout: 5000
+        readTimeout: 5000
+  httpclient:
+    connection-timeout: 5000
+    max-connections: 200
+    max-connections-per-route: 50
+
+# 配置ribbon的超时时间和重试机制, 具体的key在CommonClientConfigKey.java文件中，一般与feign的配置保持一致
+ribbon:
+  ReadTimeout: 5000
+  SocketTimeout: 5000
+
+# hystrix超时时间配置
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 10000
+        timeout:
+          enabled: true
+
+---
+server:
+  port: 8082
+
+spring:
+  application:
+    name: order-service
+  profiles: 8082
+  zipkin:
+    base-url: http://localhost:7700
+  sleuth:
+    sampler:
+      probability: 1.0
+  jackson: # Jackson相关配置，只返回非null字段，属性命名为下划线格式
+    default-property-inclusion: non_null
+    property-naming-strategy: com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://xiaoqiang:xiaoqiang@micoservice1:8761/eureka/, http://xiaoqiang:xiaoqiang@micoservice2:8762/eureka/, http://xiaoqiang:xiaoqiang@micoservice3:8763/eureka/
+
+# feign配置，默认情况下，hystrix是关闭的，需要手动打开
+feign:
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default: # 配置默认的Feign客户端超时时间
+        connectTimeout: 5000
+        readTimeout: 5000
+      inventory-service: # 给指定的客户端配置超时时间
+        connectTimeout: 5000
+        readTimeout: 5000
+  httpclient:
+    connection-timeout: 5000
+    max-connections: 200
+    max-connections-per-route: 50
+
+# 配置ribbon的超时时间和重试机制, 具体的key在CommonClientConfigKey.java文件中，一般与feign的配置保持一致
+ribbon:
+  ReadTimeout: 5000
+  SocketTimeout: 5000
+  MaxAutoRetries: 1   # 设置ribbon的重试次数
+  MaxAutoRetriesNextServer: 1
+  OkToRetryOnAllOperations: false   # 任何操作都可以重试，需要考虑幂等接口
+
+# hystrix超时时间配置
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 10000
+        timeout:
+          enabled: true

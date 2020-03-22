@@ -1,0 +1,95 @@
+# server config
+server:
+  port: 8761
+
+# spring config
+spring:
+  profiles: 8761
+  application:
+    name: registry-center
+  security:
+    user:
+      name: xiaoqiang
+      password: xiaoqiang
+  cloud:
+    inetutils:
+      ignored-interfaces: # 多网卡时配置忽略的网卡
+        - VMware.*
+
+# eureka config
+eureka:
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 5000
+  instance:
+    hostname: micoservice1  # 同一个主机上面配置hostname时，不能一样
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://xiaoqiang:xiaoqiang@micoservice2:8762/eureka/, http://xiaoqiang:xiaoqiang@micoservice3:8763/eureka/
+
+---
+# server config
+server:
+  port: 8762
+
+# spring config
+spring:
+  profiles: 8762
+  application:
+    name: registry-center
+  security:
+    user:
+      name: xiaoqiang
+      password: xiaoqiang
+  cloud:
+    inetutils:
+      ignored-interfaces:
+        - VMware.*
+
+# eureka config
+eureka:
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 5000
+  instance:
+    hostname: micoservice2
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://xiaoqiang:xiaoqiang@micoservice1:8761/eureka/, http://xiaoqiang:xiaoqiang@micoservice3:8763/eureka/
+
+---
+# server config
+server:
+  port: 8763
+
+# spring config
+spring:
+  profiles: 8763
+  application:
+    name: registry-center
+  security:
+    user:
+      name: xiaoqiang
+      password: xiaoqiang
+  cloud:
+    inetutils:
+      ignored-interfaces:
+        - VMware.*
+
+
+# eureka config
+eureka:
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 5000
+  instance:
+    hostname: micoservice3
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://xiaoqiang:xiaoqiang@micoservice1:8761/eureka/, http://xiaoqiang:xiaoqiang@micoservice2:8762/eureka/

@@ -1,0 +1,17 @@
+server:
+  port: 7700
+
+spring:
+  application:
+    name: sleuth-server
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://xiaoqiang:xiaoqiang@micoservice1:8761/eureka/, http://xiaoqiang:xiaoqiang@micoservice2:8762/eureka/, http://xiaoqiang:xiaoqiang@micoservice3:8763/eureka/
+
+# 关闭自动检测请求，否则启动报错IllegalArgumentException
+management:
+  metrics:
+    web:
+      server.auto-time-requests: false

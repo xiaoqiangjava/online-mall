@@ -1,0 +1,110 @@
+server:
+  port: 9090
+
+spring:
+  profiles: 9090
+  application:
+    name: zuul-service
+  zipkin:
+    base-url: http://localhost:7700    # 配置zipkin日志上报地址
+  sleuth:
+    sampler:
+      probability: 1.0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://xiaoqiang:xiaoqiang@micoservice1:8761/eureka/, http://xiaoqiang:xiaoqiang@micoservice2:8762/eureka/, http://xiaoqiang:xiaoqiang@micoservice3:8763/eureka/
+
+zuul:
+  prefix: /rest
+  routes:
+    order-service: /order/**
+# 通过URL方式路由时，使用下面的方式设置过期时间，使用服务发现时不起作用，需要通过ribbon.ReadTimeout和ribbon.SocketTimeout配置
+#  host:
+#    connect-timeout-millis: 10000
+#    connection-request-timeout-millis: 10000
+  strip-prefix: true
+
+# 配置zuul中的ribbon，防止hystrix报超时错误，使得后面的feign中的hystrix起作用
+ribbon:
+  ReadTimeout: 10000
+  SocketTimeout: 10000
+
+# 配置hystrix超时时间, 该超时时间大于微服务之间调用（feign）时hystrix的超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
+---
+server:
+  port: 9091
+
+spring:
+  profiles: 9091
+  application:
+    name: zuul-service
+  zipkin:
+    base-url: http://localhost:7700    # 配置zipkin日志上报地址
+  sleuth:
+    sampler:
+      probability: 1.0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://xiaoqiang:xiaoqiang@micoservice1:8761/eureka/, http://xiaoqiang:xiaoqiang@micoservice2:8762/eureka/, http://xiaoqiang:xiaoqiang@micoservice3:8763/eureka/
+
+zuul:
+  routes:
+    order-service: /rest/order/**
+ribbon:
+  ReadTimeout: 10000
+  SocketTimeout: 10000
+
+# 配置hystrix超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+---
+server:
+  port: 9092
+
+spring:
+  profiles: 9092
+  application:
+    name: zuul-service
+  zipkin:
+    base-url: http://localhost:7700    # 配置zipkin日志上报地址
+  sleuth:
+    sampler:
+      probability: 1.0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://xiaoqiang:xiaoqiang@micoservice1:8761/eureka/, http://xiaoqiang:xiaoqiang@micoservice2:8762/eureka/, http://xiaoqiang:xiaoqiang@micoservice3:8763/eureka/
+
+zuul:
+  routes:
+    order-service: /rest/order/**
+ribbon:
+  ReadTimeout: 10000
+  SocketTimeout: 10000
+
+# 配置hystrix超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000

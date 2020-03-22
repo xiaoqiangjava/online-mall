@@ -1,0 +1,70 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: inventory-service
+  profiles: 8083
+  zipkin:
+    base-url: http://localhost:7700
+  sleuth:
+    sampler:
+      probability: 1.0
+  jackson:
+    default-property-inclusion: non_null
+    property-naming-strategy: com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy
+  redis:
+    password: xiaoqiang
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://xiaoqiang:xiaoqiang@micoservice1:8761/eureka/, http://xiaoqiang:xiaoqiang@micoservice2:8762/eureka/, http://xiaoqiang:xiaoqiang@micoservice3:8763/eureka/
+
+---
+server:
+  port: 8084
+
+spring:
+  application:
+    name: inventory-service
+  profiles: 8084
+  zipkin:
+    base-url: http://localhost:7700
+  sleuth:
+    sampler:
+      probability: 1.0
+  jackson:
+    default-property-inclusion: non_null
+    property-naming-strategy: com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy
+  redis:
+    password: xiaoqiang
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://xiaoqiang:xiaoqiang@micoservice1:8761/eureka/, http://xiaoqiang:xiaoqiang@micoservice2:8762/eureka/, http://xiaoqiang:xiaoqiang@micoservice3:8763/eureka/
+
+---
+server:
+  port: 8085
+
+spring:
+  application:
+    name: inventory-service
+  profiles: 8085
+  zipkin:
+    base-url: http://localhost:7700
+  sleuth:
+    sampler:
+      probability: 1.0
+  jackson:
+    default-property-inclusion: non_null
+    property-naming-strategy: com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy
+  redis:
+    password: xiaoqiang
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://xiaoqiang:xiaoqiang@micoservice1:8761/eureka/, http://xiaoqiang:xiaoqiang@micoservice2:8762/eureka/, http://xiaoqiang:xiaoqiang@micoservice3:8763/eureka/
