@@ -13,6 +13,28 @@ spring:
   jackson:
     default-property-inclusion: non_null
     property-naming-strategy: com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy
+  rabbitmq:
+    host: learn
+    port: 5672
+    username: admin
+    password: xiaoqiang
+    cache:
+      channel:
+        size: 50
+        checkout-timeout: 10s
+    connection-timeout: 1s
+    publisher-confirms: true
+    publisher-returns: true
+
+stock:
+  routing:
+    key: order-stock-routing
+  exchange: order-stock-exechange
+  queue: order-stock-queue
+rabbit:
+  connection:
+    thread:
+      prefix: order-service
 
 eureka:
   client:
@@ -68,6 +90,28 @@ spring:
   jackson:
     default-property-inclusion: non_null
     property-naming-strategy: com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy
+  rabbitmq:
+    host: learn
+    port: 5672
+    username: admin
+    password: xiaoqiang
+    cache:
+      channel:
+        size: 50
+        checkout-timeout: 10s
+    connection-timeout: 1s
+    publisher-confirms: true
+    publisher-returns: true
+
+stock:
+  routing:
+    key: order-stock-routing
+  exchange: order-stock-exechange
+  queue: order-stock-queue
+rabbit:
+  connection:
+    thread:
+      prefix: order-service
 
 eureka:
   client:
@@ -124,6 +168,28 @@ spring:
   jackson: # Jackson相关配置，只返回非null字段，属性命名为下划线格式
     default-property-inclusion: non_null
     property-naming-strategy: com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy
+  rabbitmq:
+    host: learn
+    port: 5672
+    username: admin
+    password: xiaoqiang
+    cache:
+      channel:
+        size: 50
+        checkout-timeout: 10s
+    connection-timeout: 1s
+    publisher-confirms: true
+    publisher-returns: true
+
+stock:
+  routing:
+    key: order-stock-routing
+  exchange: order-stock-exechange
+  queue: order-stock-queue
+rabbit:
+  connection:
+    thread:
+      prefix: order-service
 
 eureka:
   client:

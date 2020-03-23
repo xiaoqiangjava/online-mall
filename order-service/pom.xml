@@ -56,6 +56,12 @@
             <artifactId>spring-cloud-starter-zipkin</artifactId>
         </dependency>
 
+        <!-- rabbit -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+
         <!-- 业务相关 -->
         <dependency>
             <groupId>com.xq.learn</groupId>

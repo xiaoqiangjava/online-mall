@@ -15,6 +15,25 @@ spring:
     property-naming-strategy: com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy
   redis:
     password: xiaoqiang
+  rabbitmq:
+    host: learn
+    port: 5672
+    username: admin
+    password: xiaoqiang
+    cache:
+      channel:
+        size: 50
+        checkout-timeout: 10s
+    connection-timeout: 1s
+    publisher-confirms: true
+    publisher-returns: true
+
+stock:
+  queue: order-stock-queue
+rabbit:
+  connection:
+    thread:
+      prefix: ${spring.application.name}
 
 eureka:
   client:
@@ -39,6 +58,25 @@ spring:
     property-naming-strategy: com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy
   redis:
     password: xiaoqiang
+  rabbitmq:
+    host: learn
+    port: 5672
+    username: admin
+    password: xiaoqiang
+    cache:
+      channel:
+        size: 50
+        checkout-timeout: 10s
+    connection-timeout: 1s
+    publisher-confirms: true
+    publisher-returns: true
+
+stock:
+  queue: order-stock-queue
+rabbit:
+  connection:
+    thread:
+      prefix: ${spring.application.name}
 
 eureka:
   client:
@@ -63,6 +101,25 @@ spring:
     property-naming-strategy: com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy
   redis:
     password: xiaoqiang
+  rabbitmq:
+    host: learn
+    port: 5672
+    username: admin
+    password: xiaoqiang
+    cache:
+      channel:
+        size: 50
+        checkout-timeout: 10s
+    connection-timeout: 1s
+    publisher-confirms: true
+    publisher-returns: true
+
+stock:
+  queue: order-stock-queue
+rabbit:
+  connection:
+    thread:
+      prefix: ${spring.application.name}
 
 eureka:
   client:

@@ -4,6 +4,7 @@ import com.xq.learn.common.CommonResponse;
 import com.xq.learn.exception.MallException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,10 @@ public class ExceptionController
         response.setSuccess(false);
         response.setErrorCode(e.getErrorCode());
         response.setErrorMessage(e.getErrorMessage());
+        if (StringUtils.equals(e.getErrorCode(), "mall.0001"))
+        {
+            response.setFallback(true);
+        }
 
         return response;
     }
